@@ -6,14 +6,15 @@ import info from './assets/documentation';
 import './Documentation.scss';
 
 function Documentation() {
-    return <Container className="p-0" fluid="md">
+    return <Container className="p-0 docs" fluid="md">
+        <h3 className="mb-3">Documentation</h3>
         {info.map((article, index) => {
-            return <Row className="mb-4" key={index}>
-                <h3 className="mb-2">{article.title}</h3>
+            return <div key={index} >
+                <h4 className="mb-2">{article.title}</h4>
                 <p className="mb-2">{article.body}</p>
-                <h4 className="mb-2">Example:</h4>
-                <Image src={article.img} fluid />
-            </Row>
+                <p className="mb-2">Example:</p>
+                <Image className="mb-4" src={article.img} fluid />
+            </div>
         })}
     </Container>
 }
