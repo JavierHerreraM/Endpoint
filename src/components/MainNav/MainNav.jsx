@@ -1,30 +1,34 @@
 import React, { useState } from "react";
 import { LinkContainer } from 'react-router-bootstrap';
-import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import './MainNav.scss';
 
 function MainNav() {
+    let [menuState, setMenuState] = useState(false);
+
+    function handleOpen() {
+        if (!menuState) {
+            setMenuState(true);
+        } else {
+            setMenuState(false);
+        }
+    }
+
     return <>
-        <Navbar bg="primary" variant="dark" expand="sm">
-            <LinkContainer to="/">
-                <Navbar.Brand href="/">ENDPOINT</Navbar.Brand>
-            </LinkContainer>
-            <Navbar.Toggle className="navBtn" aria-controls="basic-navbar-nav" children={<FontAwesomeIcon icon={faBars} />} />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mx-auto">
-                    <LinkContainer to="/docs" >
-                        <Nav.Link href="/docs">DOCUMENTATION</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to="/users" >
-                        <Nav.Link href="/users">USERS</Nav.Link>
-                    </LinkContainer>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
-    </>;
+        <nav className="main-nav px-2 py-1">
+            <div className="nav-bar">
+                <LinkContainer to="/"><h2 className="mb-0 mr-auto">ENDPOINT</h2></LinkContainer>
+                <FontAwesomeIcon className="nav-button" onClick={handleOpen} icon={faBars} />
+            </div>
+            <Nav bsPrefix={menuState ? 'nav-links open' : 'nav-links'}>
+                <LinkContainer to="/docs"><Nav.Link onClick={handleOpen}>DOCUMENTATION</Nav.Link></LinkContainer>
+                <LinkContainer to="/users"><Nav.Link onClick={handleOpen}>USERS</Nav.Link></LinkContainer>
+            </Nav>
+            {/* </div> */}
+        </nav>
+    </>
 }
 
 export default MainNav;

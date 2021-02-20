@@ -3,9 +3,9 @@ import Button from 'react-bootstrap/Button';
 import './Button.scss';
 
 function MyButton(props) {
-    const { classes, text, functionality, color, children } = props;
+    const { type = "button", classes, text, functionality, color, children } = props;
     return <>
-        <Button className={`button ${classes}`} variant={color} onClick={functionality}>{text}{children}</Button>
+        <Button type={type} className={`button ${classes}`} variant={color} onClick={functionality}>{text}{children}</Button>
     </>
 }
 

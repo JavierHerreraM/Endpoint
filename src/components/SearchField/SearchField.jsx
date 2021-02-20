@@ -8,18 +8,16 @@ import MyButton from '../Button/Button';
 import './SearchField.scss';
 
 function SearchField(props) {
-    const { setData } = props;
+    const { newSearch } = props;
     let [search, setSearch] = useState('');
 
-    async function handleSearch(event) {
-        let response;
+    function handleSearch(event) {
         event.preventDefault();
-        if (search === '') {
-            response = await axios.get(`https://jh-endpoint-api.herokuapp.com/users`);
+        if (search === "") {
+            newSearch("blank");
         } else {
-            response = await axios.get(`https://jh-endpoint-api.herokuapp.com/users/${search.toLowerCase()}`);
+            newSearch(search);
         }
-        setData(response.data);
     }
 
     function handleChange(event) {
@@ -28,7 +26,7 @@ function SearchField(props) {
 
     return <Form className='searchField mb-2' inline onSubmit={handleSearch}>
         <FormControl type="text" value={search} placeholder="Search" onChange={handleChange} />
-        <MyButton text={<FontAwesomeIcon icon={faSearch} />} onClick={handleSearch} color="secondary" />
+        <MyButton text={<FontAwesomeIcon icon={faSearch} />} functionality={handleSearch} color="secondary" />
     </Form>;
 };
 
