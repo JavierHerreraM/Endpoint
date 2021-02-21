@@ -29,7 +29,6 @@ function Dashboard() {
                 <Pagination.Item>{<FontAwesomeIcon icon={faAngleRight} />}</Pagination.Item>
             </Pagination>
             <NavLink to="/users/new">
-
                 <MyButton classes="mb-2" text="create" >{<FontAwesomeIcon className="ml-1" icon={faPlus} />}</MyButton>
             </NavLink>
         </Row>

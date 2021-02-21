@@ -16,19 +16,32 @@ function Users(props) {
     const [users, setUsers] = useState([]);
 
     useEffect(async () => {
-        const response = await axios.get('https://jh-endpoint-api.herokuapp.com/users');
-        setUsers(response.data);
+        try {
+            const response = await axios.get('https://jh-endpoint-api.herokuapp.com/users');
+            setUsers(response.data);
+        } catch (error) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        }
+
     }, []);
 
     useEffect(async () => {
         if (newSearch !== false) {
-            let response;
-            if (newSearch === "blank") {
-                response = await axios.get(`https://jh-endpoint-api.herokuapp.com/users`);
-            } else {
-                response = await axios.get(`https://jh-endpoint-api.herokuapp.com/users/${newSearch}`);
+            try {
+                let response;
+                if (newSearch === "blank") {
+                    response = await axios.get(`https://jh-endpoint-api.herokuapp.com/users`);
+                } else {
+                    response = await axios.get(`https://jh-endpoint-api.herokuapp.com/users/${newSearch}`);
+                }
+                setUsers(response.data);
+            } catch (error) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
             }
-            setUsers(response.data);
         }
     }, [newSearch]);
 

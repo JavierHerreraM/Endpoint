@@ -6,6 +6,7 @@ import Home from './Home/Home';
 import Dashboard from './Dashboard/Dashboard';
 import UserPanel from './userPanel/UserPanel';
 import Documentation from './Documentation/Documentation';
+import Interceptor from './response-interceptor/Interceptor';
 
 import './config.scss';
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" component={Home} />
       </Switch>
     </Canvas>
+    <Interceptor />
   </>;
 }
 
