@@ -1,5 +1,7 @@
 import Joi from 'joi-browser';
 
+// * Validation for the user inputs
+
 // * It requires the username, firstName and lastName, they also have a minLength
 const schema = Joi.object({
     username: Joi.string().alphanum().required().min(1).label("Username"),
@@ -10,10 +12,6 @@ const schema = Joi.object({
 });
 
 // * Receives an user and validates him, aborts the operation with the first wrong parameter
-function validateUser(user) {
-    return schema.validate(user, {
-        abortEarly: true
-    });
-};
+let validateUser = (user) => schema.validate(user, {abortEarly: true});
 
 export default validateUser;

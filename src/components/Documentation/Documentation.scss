@@ -1,3 +1,25 @@
-.docs h4 {
-    word-break: break-word;
+.docs {
+    p {
+
+        text-align: justify;
+    }
+
+    .docs-label {
+        display: flex;
+        align-items: center;
+
+        h4 {
+            font-weight: 500;
+        }
+
+        p {
+            word-break: break-all;
+            margin-left: 0.5rem;
+            text-align: start;
+        }
+    }
+
+    .docs-example {
+        font-weight: 500;
+    }
 }

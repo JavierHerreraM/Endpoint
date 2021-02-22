@@ -1,4 +1,4 @@
-@import "../settings";
+@import "../app/settings";
 
 .table {
     max-width: 100%;
@@ -13,14 +13,12 @@
     }
 
     tr :first-child {
-        // text-align: start;
         word-break: initial;
         border-top-left-radius: 0.25rem;
         border-bottom-left-radius: 0.25rem;
     }
 
     tr :last-child {
-        // text-align: end;
         word-break: initial;
         border-top-right-radius: 0.25rem;
         border-bottom-right-radius: 0.25rem;

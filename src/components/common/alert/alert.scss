@@ -1,8 +1,10 @@
 .alert-styles {
+    // * Shows the alert relative to the window
     position: fixed;
     bottom: 1rem;
     left: 1rem;
 
+    // * Changes the size od the x icon in the alert
     & button.close {
         font-size: 1.5rem;
         margin: 0;

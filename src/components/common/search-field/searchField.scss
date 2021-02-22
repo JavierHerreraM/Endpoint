@@ -1,0 +1,11 @@
+.searchField {
+    flex-wrap: nowrap !important;
+
+    div {
+        display: flex;
+    }
+
+    small {
+        color: #dc3545 !important;
+    }
+}

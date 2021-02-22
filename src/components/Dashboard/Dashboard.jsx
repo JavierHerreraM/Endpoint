@@ -1,34 +1,28 @@
 import React, { useState } from 'react';
-import SearchField from '../SearchField/SearchField';
-import MyButton from "../Button/Button";
-import { faAngleLeft, faAngleRight, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Pagination from 'react-bootstrap/Pagination';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './Dashboard.scss';
-import Users from '../Users/Users';
-import { NavLink } from 'react-router-dom';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import SearchField from '../common/search-field/SearchField';
+import MyButton from "../common/button/Button";
+import Users from '../users/Users';
+import './dashboard.scss';
 
+// * A container for the users table and possible other, it has the search field
 function Dashboard() {
-
+    // * newSearch goes to Users to make new requests while setNewSearch goes to SearchField to set the input
     let [newSearch, setNewSearch] = useState(false);
 
     return <Container fluid="md" className="px-0 dashboard">
         <Row className="mx-0">
+            {/* setNewSearch("blank") tells users to make a get request of all the users*/}
             <h3 className="pr-1 mr-auto mb-2" onClick={() => { setNewSearch("blank") }}>Users</h3>
             <SearchField newSearch={setNewSearch} />
         </Row>
         <Users newSearch={newSearch} />
         <Row className="mx-0">
-            <Pagination className="mr-auto">
-                <Pagination.Item>{<FontAwesomeIcon icon={faAngleLeft} />}</Pagination.Item>
-                <Pagination.Item active>{1}</Pagination.Item>
-                <Pagination.Item>{2}</Pagination.Item>
-                <Pagination.Item>{3}</Pagination.Item>
-                <Pagination.Item>{<FontAwesomeIcon icon={faAngleRight} />}</Pagination.Item>
-            </Pagination>
-            <NavLink to="/users/new">
+            <NavLink to="/users/new" className="ml-auto">
                 <MyButton classes="mb-2" text="create" >{<FontAwesomeIcon className="ml-1" icon={faPlus} />}</MyButton>
             </NavLink>
         </Row>
