@@ -35,7 +35,7 @@ function UserPanel() {
         firstName: "",
         lastName: "",
         age: 0,
-        mail: "",
+        email: "",
     });
 
     // * Reusable function to call and set user body
@@ -45,7 +45,7 @@ function UserPanel() {
             firstName: user.firstName,
             lastName: user.lastName,
             age: user.age,
-            mail: user.mail
+            email: user.email
         }
     }
 
@@ -161,10 +161,10 @@ function UserPanel() {
                 <Form.Control type="number" value={user.age} placeholder="18" onChange={handleChange} />
                 {inputError.path === "age" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
             </Form.Group>
-            <Form.Group controlId="mail">
+            <Form.Group controlId="email">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="Email" value={user.mail} placeholder="mymail@email.com" onChange={handleChange} />
-                {inputError.path === "mail" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
+                <Form.Control type="Email" value={user.email} placeholder="mymail@email.com" onChange={handleChange} />
+                {inputError.path === "email" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
             </Form.Group>
             <Row className="mx-0 mt-4">
                 <NavLink className="mr-auto" to="/users">

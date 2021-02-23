@@ -74,7 +74,7 @@ function Users(props) {
                             <td>{user.username}</td>
                             {isSmallScreen && <td>{user.firstName}</td>}
                             {isMediumScreen && <td>{user.lastName}</td>}
-                            {isLargeScreen && <><td>{user.age}</td><td>{user.mail}</td></>}
+                            {isLargeScreen && <><td>{user.age}</td><td>{user.email}</td></>}
                             <td>
                                 <NavLink to={`/users/${user.username}`}>
                                     <FontAwesomeIcon icon={faEdit} />
@@ -89,7 +89,7 @@ function Users(props) {
                         <td>{users.username}</td>
                         {isSmallScreen && <td>{users.firstName}</td>}
                         {isMediumScreen && <td>{users.lastName}</td>}
-                        {isLargeScreen && <><td>{users.age}</td><td>{users.mail}</td></>}
+                        {isLargeScreen && <><td>{users.age}</td><td>{users.email}</td></>}
                         <td>
                             <NavLink to={`/users/${users.username}`}>
                                 <FontAwesomeIcon icon={faEdit} />

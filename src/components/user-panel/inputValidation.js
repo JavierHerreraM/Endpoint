@@ -8,7 +8,7 @@ const schema = Joi.object({
     firstName: Joi.string().required().min(1).label("First name"),
     lastName: Joi.string().required().min(1).label("Last name"),
     age: Joi.number().greater(0).label("Age"),
-    mail: Joi.string().email().label("Email")
+    email: Joi.string().email().label("Email")
 });
 
 // * Receives an user and validates him, aborts the operation with the first wrong parameter
