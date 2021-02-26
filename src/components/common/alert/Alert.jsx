@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Toast from 'react-bootstrap/Toast'
 import MyButton from '../button/Button';
 import './alert.scss';
 
 // * Alert is a component that shows a modify alert on activation
 function Alert(props) {
-    // * show: if true shows the alert on the ui
-    // * alertType: receives the cases of the switch
-    // * username: is for show the username in the alerts info
-    // * activateFunction: is a reference to the function that takes place when clicking the button
-    // * disableShow: a reference to a function that sets show on false
-    // * error: object with information to show an error alert
+    // * Info below in the propTypes
     const { show = false, alertType, username, activateFunction, disableShow, error } = props;
 
     let header, body, btn, autohide, showButton;
@@ -26,12 +22,12 @@ function Alert(props) {
     const buttonBehavior = () => {
         activateFunction();
         setShowAlert(false);
-    }
+    };
 
     const handleClose = () => {
         toggleShow();
         disableShow(false);
-    }
+    };
 
     // * Depending on the type of alert sets different info to show on the alert
     switch (alertType) {
@@ -81,7 +77,22 @@ function Alert(props) {
             {/* If show button true the alert has a button */}
             {showButton && <MyButton text={btn.text} color={btn.color} functionality={buttonBehavior} />}
         </Toast.Body>
-    </Toast>;
-}
+    </Toast>
+};
+
+// * show: if true shows the alert on the ui
+// * alertType: receives the cases of the switch
+// * username: is for show the username in the alerts info
+// * activateFunction: is a reference to the function that takes place when clicking the button
+// * disableShow: a reference to a function that sets show on false
+// * error: object with information to show an error alert
+Alert.propTypes = {
+    show: PropTypes.bool,
+    alertType: PropTypes.oneOf(['post', 'put', 'delete', 'confirm', 'error', '']),
+    username: PropTypes.string,
+    activateFunction: PropTypes.func,
+    disableShow: PropTypes.func,
+    error: PropTypes.object
+};
 
 export default Alert;

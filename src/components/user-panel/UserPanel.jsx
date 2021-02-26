@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useLocation, NavLink, Redirect } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
@@ -47,14 +48,14 @@ function UserPanel() {
             age: user.age,
             email: user.email
         }
-    }
+    };
 
     // * Reusable funtionc to log the error.response of the requests
     const errorLogs = (error) => {
         console.log(error.data);
         console.log(error.status);
         console.log(error.headers);
-    }
+    };
 
     useEffect(async () => {
         // * If pathname === new is means is creating a users instead of updating one
@@ -85,7 +86,7 @@ function UserPanel() {
                 [property]: value
             }
         });
-    }
+    };
 
     // * handles the delete request
     const handleDelete = async () => {
@@ -100,7 +101,7 @@ function UserPanel() {
                 console.log(error.request);
             }
         }
-    }
+    };
 
     // * Manages either the POST or PUT request
     const handleSave = async (event) => {
@@ -133,56 +134,59 @@ function UserPanel() {
                 }
             }
         }
-    }
+    };
 
-    return <Container className="users-panel p-0" fluid="md">
-        <Row className="mx-0">
-            <h3 className="mb-2 mr-auto" >{isUpdate === false ? "Create new user" : user.username}</h3>
-            {isUpdate && <MyButton classes="mb-2" text="delete" functionality={() => { setShowAlert(true) }} color="danger" ><FontAwesomeIcon className='ml-1' icon={faTrashAlt} /></MyButton>}
-        </Row>
-        <Form onSubmit={handleSave}>
-            <Form.Group controlId="username">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" value={user.username} placeholder="Username" onChange={handleChange} />
-                {inputError.path === "username" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
-            </Form.Group>
-            <Form.Group controlId="firstName">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control type="text" value={user.firstName} placeholder="First name" onChange={handleChange} />
-                {inputError.path === "firstName" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
-            </Form.Group>
-            <Form.Group controlId="lastName">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control type="text" value={user.lastName} placeholder="Last name" onChange={handleChange} />
-                {inputError.path === "lastName" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
-            </Form.Group>
-            <Form.Group controlId="age">
-                <Form.Label>Age</Form.Label>
-                <Form.Control type="number" value={user.age} placeholder="18" onChange={handleChange} />
-                {inputError.path === "age" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
-            </Form.Group>
-            <Form.Group controlId="email">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="Email" value={user.email} placeholder="mymail@email.com" onChange={handleChange} />
-                {inputError.path === "email" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
-            </Form.Group>
-            <Row className="mx-0 mt-4">
-                <NavLink className="mr-auto" to="/users">
-                    <MyButton text='cancel' color="secondary" ><FontAwesomeIcon className='ml-1' icon={faUndoAlt} /></MyButton>
-                </NavLink>
-                <MyButton type="submit" text='save' functionality={handleSave} color="secondary" ><FontAwesomeIcon className='ml-1' icon={faSave} /></MyButton>
+    return <>
+        <Helmet><title>{isUpdate ? 'Update User' : 'Create User'} - Endpoint</title></Helmet>
+        <Container className="users-panel p-0" fluid="md">
+            <Row className="mx-0">
+                <h3 className="mb-2 mr-auto" >{isUpdate === false ? "Create new user" : user.username}</h3>
+                {isUpdate && <MyButton classes="mb-2" text="delete" functionality={() => { setShowAlert(true) }} color="danger" ><FontAwesomeIcon className='ml-1' icon={faTrashAlt} /></MyButton>}
             </Row>
-        </Form>
-        {/* When redirect is true it render the component causing the page to redirect to the given location */}
-        {redirect && <Redirect push to="/users" />}
-        <Alert
-            show={showAlert}
-            alertType="confirm"
-            username={user.username}
-            activateFunction={handleDelete}
-            disableShow={setShowAlert}
-        />
-    </Container>;
-}
+            <Form onSubmit={handleSave}>
+                <Form.Group controlId="username">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control type="text" value={user.username} placeholder="Username" onChange={handleChange} />
+                    {inputError.path === "username" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
+                </Form.Group>
+                <Form.Group controlId="firstName">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control type="text" value={user.firstName} placeholder="First name" onChange={handleChange} />
+                    {inputError.path === "firstName" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
+                </Form.Group>
+                <Form.Group controlId="lastName">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control type="text" value={user.lastName} placeholder="Last name" onChange={handleChange} />
+                    {inputError.path === "lastName" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
+                </Form.Group>
+                <Form.Group controlId="age">
+                    <Form.Label>Age</Form.Label>
+                    <Form.Control type="number" value={user.age} placeholder="18" onChange={handleChange} />
+                    {inputError.path === "age" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
+                </Form.Group>
+                <Form.Group controlId="email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="Email" value={user.email} placeholder="mymail@email.com" onChange={handleChange} />
+                    {inputError.path === "email" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
+                </Form.Group>
+                <Row className="mx-0 mt-4">
+                    <NavLink className="mr-auto" to="/users">
+                        <MyButton text='cancel' color="secondary" ><FontAwesomeIcon className='ml-1' icon={faUndoAlt} /></MyButton>
+                    </NavLink>
+                    <MyButton type="submit" text='save' functionality={handleSave} color="secondary" ><FontAwesomeIcon className='ml-1' icon={faSave} /></MyButton>
+                </Row>
+            </Form>
+            {/* When redirect is true it render the component causing the page to redirect to the given location */}
+            {redirect && <Redirect push to="/users" />}
+            <Alert
+                show={showAlert}
+                alertType="confirm"
+                username={user.username}
+                activateFunction={handleDelete}
+                disableShow={setShowAlert}
+            />
+        </Container>
+    </>
+};
 
 export default UserPanel;

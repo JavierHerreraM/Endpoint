@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useMediaQuery } from 'react-responsive';
+import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/Table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -9,8 +10,6 @@ import './users.scss';
 
 // * Displays the users table with the info of the users
 function Users(props) {
-    // * If "blank" makes a get request to all users, if false doesn't do anything, everything else
-    // * will make a call looking for a specific user
     const { newSearch } = props;
 
     // * Media queries to handle when to render columns of the table
@@ -97,10 +96,16 @@ function Users(props) {
                         </td>
                     </tr>
                 }
-
             </tbody>
         </Table>
-    </>;
+    </>
+};
+
+Users.propTypes = {
+    newSearch: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.bool,
+    ])
 }
 
 export default Users;

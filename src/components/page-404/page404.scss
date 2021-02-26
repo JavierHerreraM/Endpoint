@@ -1,0 +1,29 @@
+@import '../app/settings';
+
+.page-404 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & div:first-child {
+        margin-right: 2rem;
+    }
+
+    & :first-child * {
+        margin-bottom: 1rem;
+    }
+
+}
+
+.page-404_title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.815rem;
+    font-weight: 800;
+}
+
+.page-404_icon {
+    font-size: 7rem;
+    color: $secondary-color;
+}

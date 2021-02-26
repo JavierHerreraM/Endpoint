@@ -8,6 +8,7 @@ import UserPanel from '../user-panel/UserPanel';
 import Documentation from '../documentation/Documentation';
 import Interceptor from '../response-interceptor/Interceptor';
 import Footer from '../footer/Footer';
+import Page404 from '../page-404/Page404';
 import './config.scss';
 
 function App() {
@@ -15,17 +16,17 @@ function App() {
     <MainNav />
     <Canvas>
       <Switch>
-        {/* Falta hacer la pagina del 404 */}
         <Route path="/users/new" component={UserPanel} />
-        <Route path="/docs" component={Documentation} />
         <Route path="/users/:username" component={UserPanel} />
         <Route path="/users" component={Dashboard} />
+        <Route path="/docs" component={Documentation} />
         <Route exact path="/" component={Home} />
+        <Route path="*" component={Page404} />
       </Switch>
     </Canvas>
     <Footer />
     <Interceptor />
   </>;
-}
+};
 
 export default App;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,7 +12,6 @@ import './searchField.scss';
 
 // * A reusable search input
 function SearchField(props) {
-    // * newSearch: set a variable to the value of the input to trigger a call
     const { newSearch } = props;
 
     // * var for controlled comp
@@ -46,10 +46,15 @@ function SearchField(props) {
     return <Form className='searchField' onSubmit={handleSearch}>
         <div>
             <FormControl type="text" value={search} placeholder="Search username" onChange={handleChange} />
-            <MyButton text={<FontAwesomeIcon icon={faSearch} />} functionality={handleSearch} color="secondary" />
+            <MyButton children={<FontAwesomeIcon icon={faSearch} />} functionality={handleSearch} color="secondary" />
         </div>
         {searchError.message && <Form.Text className="text-muted">{searchError.message}</Form.Text>}
     </Form>;
+};
+
+// * newSearch: set a state to the value of the input to trigger a call
+SearchField.propTypes = {
+    newSearch: PropTypes.func
 };
 
 export default SearchField;
