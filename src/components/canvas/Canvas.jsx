@@ -5,7 +5,7 @@ import './canvas.scss';
 // * Canvas is basically a container with some default styles to have consistency
 function Canvas(props) {
     const { children } = props;
-    return <main fluid="true" className="canvas p-2">
+    return <main fluid="true" className="canvas pt-2">
         {children}
     </main>
 };

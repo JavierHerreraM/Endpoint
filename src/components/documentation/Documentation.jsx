@@ -9,7 +9,7 @@ import './documentation.scss';
 function Documentation() {
     return <>
         <Helmet><title>Documentation - Endpoint</title></Helmet>
-        <Container className="p-0 docs" fluid="md">
+        <Container className="docs" fluid="md">
             <h3 className="mb-3">Documentation</h3>
 
             {info.map((article, index) => {

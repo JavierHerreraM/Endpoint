@@ -4,5 +4,17 @@
     max-width: 100vw;
     // * The 2.375 is from 1.375rem of the font + 1rem of padding
     min-height: calc(100vh - 2.375rem);
+    display: flex;
+    flex-direction: column;
     background-color: $white-color !important;
+
+    ul {
+        padding: 0;
+    }
+}
+
+.canvas>div {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
 }

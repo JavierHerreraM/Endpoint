@@ -35,7 +35,7 @@ function UserPanel() {
         username: "",
         firstName: "",
         lastName: "",
-        age: 0,
+        age: "",
         email: "",
     });
 
@@ -50,13 +50,14 @@ function UserPanel() {
         }
     };
 
-    // * Reusable funtionc to log the error.response of the requests
+    // * Reusable function to log the error.response of the requests
     const errorLogs = (error) => {
         console.log(error.data);
         console.log(error.status);
         console.log(error.headers);
     };
 
+    // * Gets the user info to display in screen
     useEffect(async () => {
         // * If pathname === new is means is creating a users instead of updating one
         if (pathname !== "/users/new") {
@@ -138,7 +139,7 @@ function UserPanel() {
 
     return <>
         <Helmet><title>{isUpdate ? 'Update User' : 'Create User'} - Endpoint</title></Helmet>
-        <Container className="users-panel p-0" fluid="md">
+        <Container className="users-panel" fluid="md">
             <Row className="mx-0">
                 <h3 className="mb-2 mr-auto" >{isUpdate === false ? "Create new user" : user.username}</h3>
                 {isUpdate && <MyButton classes="mb-2" text="delete" functionality={() => { setShowAlert(true) }} color="danger" ><FontAwesomeIcon className='ml-1' icon={faTrashAlt} /></MyButton>}
@@ -161,7 +162,7 @@ function UserPanel() {
                 </Form.Group>
                 <Form.Group controlId="age">
                     <Form.Label>Age</Form.Label>
-                    <Form.Control type="number" value={user.age} placeholder="18" onChange={handleChange} />
+                    <Form.Control type="number" value={user.age} placeholder="0" onChange={handleChange} />
                     {inputError.path === "age" && <Form.Text className="text-muted">{inputError.message}</Form.Text>}
                 </Form.Group>
                 <Form.Group controlId="email">

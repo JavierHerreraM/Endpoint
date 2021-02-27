@@ -6,7 +6,7 @@ import './footer.scss';
 
 function Footer() {
     return <>
-        <footer>
+        <footer className="mt-auto">
             <div className='footer-body'>
                 <h1>ENDPOINT</h1>
                 <div className='footer-contact'>
